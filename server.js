@@ -47,7 +47,7 @@ mongoose.set("strictQuery", false);
 const port = process.env.PORT || 8000;
 
 mongoose
-  .connect(process.env.URI, {
+  .connect("mongodb+srv://member:i1d7D2z3CSSurBmQ@cluster0.xjqozuj.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
   })
   .then(() => {
