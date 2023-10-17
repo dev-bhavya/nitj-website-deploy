@@ -12,7 +12,8 @@ fetch(`${data_url}` + `/recruitments/updates/defaultTab`)
   .then((response) => response.json())
   .then((data) => {
     const update = data;
-
+  console.log(update.defaultTabName);
+    console.log(slug[slug.length - 1]);
     if (update.defaultTabName === "research") {
       const resJob = document.getElementById("researchButton");
       resJob.click()
@@ -30,7 +31,9 @@ fetch(`${data_url}` + `/recruitments/updates/defaultTab`)
       nonfacultycontract.click()
     }
     else if(update.defaultTabName === "faculty" && slug[slug.length - 1] !== "research"){
-      const faculty = document.getElementById("facultyButton");
+      const faculty = document.getElementById("facultybutton");
+    console.log("hiii")
+      console.log(faculty);
       faculty.click()
     };
   });
