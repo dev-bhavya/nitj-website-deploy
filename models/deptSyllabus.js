@@ -8,9 +8,9 @@ const Schema=new mongoose.Schema({
     link: {type:String},
     type:{
       type:String,
-      enum:["B.Tech","M.Tech","PhD","PG Diploma"]
+      required:true
     },
-    
+    show:{type:Boolean},
     sourceOfInfo: {
       type:  String
   },

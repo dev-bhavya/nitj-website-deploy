@@ -165,14 +165,8 @@
                                         var courseName = result[i]['courseName'];
                                         var departmentName = result[i]['departmentName'];
 
-
-
-                                        console.log(Course.getAttribute('id').toLowerCase(), Dept.getAttribute('id').toLowerCase());
-
                                         if (courseName == Course.getAttribute('id').toLowerCase() && departmentName == Dept.getAttribute('id').toLowerCase()) {
                                             element.style.visibility = "visible";
-
-
 
                                             element.innerHTML = `
                                             <a href="${result[i]['links']['after2022']}">
@@ -198,7 +192,6 @@
                                         }
 
                                         else {
-                                            console.log(element);
                                             element.style.visibility = "hidden";
                                         }
                                     }
@@ -211,7 +204,7 @@
             </div>
         </div>
     </div>
-    <script src="../template/footer.js"></script>
+    <script defer src="/template/footer.js"></script>
 </body>
 
 </html>

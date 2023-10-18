@@ -57,11 +57,13 @@ const Testimonial = require("./models/testimonial");
 const Timeline = require("./models/timeline");
 const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
+const scholarship=require("./models/scholarship");
+const initiative=require("./models/initiatives");
 
 // Research Menu
 const researchMenuName = "Research";
 const Consultancy = require("./models/research/consultancy");
-const Events = require("./models/research/events");
+// const Events = require("./models/research/events");
 const MoUs = require("./models/research/MoUs");
 const researchPublications = require("./models/research/researchPublications");
 const sponsoredProjects = require("./models/research/sponsoredProjects");
@@ -73,6 +75,9 @@ const DefaultJobsTab = require("./models/recruitmentUpdates").DefaultJobsTab;
 const addmissionHelpline = require("./models/admissions/admissionHelpline");
 const addmissionUpdate = require("./models/admissions/admissionUpdate");
 const importantLink = require("./models/admissions/importantLink");
+const majorProgramme = require("./models/admissions/majorProgramme.js");
+const minorProgramme = require("./models/admissions/minorProgramme.js");
+
 
 const newpage = require("./models/newpage");
 
@@ -80,6 +85,9 @@ const User = require("./models/AdminBroUser");
 const { query } = require("express");
 const { filter } = require("compression");
 const specialCentres = require("./models/specialCentres");
+const curriculum = require("./models/curriculum");
+const examSchedule = require("./models/examSchedule");
+const deptwiseFaculty = require("./models/deptwiseFaculty");
 
 const canModifyUsers = ({ currentAdmin }) =>
   currentAdmin && currentAdmin.role === "admin";
@@ -2139,13 +2147,13 @@ const AdminBroOptions = {
         actions: { list: { isAccessible: isAdmin } },
       },
     },
-    {
-      resource: Events,
-      options: {
-        navigation: researchMenuName,
-        actions: { list: { isAccessible: isAdmin } },
-      },
-    },
+    // {
+    //   resource: Events,
+    //   options: {
+    //     navigation: researchMenuName,
+    //     actions: { list: { isAccessible: isAdmin } },
+    //   },
+    // },
     {
       resource: MoUs,
       options: {
@@ -2250,12 +2258,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2276,7 +2282,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2287,8 +2292,6 @@ const AdminBroOptions = {
                 "name",
                 "email",
                 "img",
-                "position",
-                "department",
                 "education_qualification",
                 "address",
                 "gender",
@@ -2331,12 +2334,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2357,7 +2358,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2368,8 +2368,6 @@ const AdminBroOptions = {
                 "name",
                 "email",
                 "img",
-                "position",
-                "department",
                 "address",
                 "gender",
                 "dob",
@@ -2398,12 +2396,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2424,7 +2420,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2435,8 +2430,6 @@ const AdminBroOptions = {
                 "name",
                 "email",
                 "img",
-                "position",
-                "department",
                 "address",
                 "gender",
                 "dob",
@@ -2465,12 +2458,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2491,7 +2482,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2503,7 +2493,6 @@ const AdminBroOptions = {
                 "email",
                 "img",
                 "position",
-                "department",
                 "address",
                 "gender",
                 "dob",
@@ -2532,12 +2521,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2558,7 +2545,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2569,8 +2555,6 @@ const AdminBroOptions = {
                 "name",
                 "email",
                 "img",
-                "position",
-                "department",
                 "address",
                 "gender",
                 "dob",
@@ -2599,12 +2583,10 @@ const AdminBroOptions = {
               if (currentAdmin.role === "admin") {
                 return [
                   "_id",
-                  "department",
                   "name",
                   "email",
                   "password",
                   "img",
-                  "position",
                   "education_qualification",
                   "address",
                   "gender",
@@ -2625,7 +2607,6 @@ const AdminBroOptions = {
                   "event",
                   "sourceOfInfo",
                   "show",
-                  "order",
                   "affiliations",
                   "createdAt",
                   "updatedAt",
@@ -2636,8 +2617,6 @@ const AdminBroOptions = {
                 "name",
                 "email",
                 "img",
-                "position",
-                "department",
                 "address",
                 "gender",
                 "dob",
@@ -2673,7 +2652,36 @@ const AdminBroOptions = {
       },
     },
     {
+      resource: scholarship,
+      options: {
+        navigation: "Scholarship",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
+      resource: initiative,
+      options: {
+        navigation: "Initiative",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    
+    {
       resource: specialCentres,
+      options: {
+        navigation: "AcademicsSystem",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
+      resource: curriculum,
+      options: {
+        navigation: "AcademicsSystem",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
+      resource: examSchedule,
       options: {
         navigation: "AcademicsSystem",
         actions: { list: { isAccessible: isAdmin } },
@@ -2793,6 +2801,13 @@ const AdminBroOptions = {
       },
     },
     {
+      resource: deptwiseFaculty,
+      options: {
+        navigation: "Faculty",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
       resource: Tender,
       options: {
         navigation: "Home",
@@ -2844,6 +2859,20 @@ const AdminBroOptions = {
     },
     {
       resource: importantLink,
+      options: {
+        navigation: "Admissions",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
+      resource: majorProgramme,
+      options: {
+        navigation: "Admissions",
+        actions: { list: { isAccessible: isAdmin } },
+      },
+    },
+    {
+      resource: minorProgramme,
       options: {
         navigation: "Admissions",
         actions: { list: { isAccessible: isAdmin } },

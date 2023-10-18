@@ -19,7 +19,14 @@ const Schema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    pin:{
+      type:Boolean,
+      default:false,
+    },
     pdfLink: {
+      type: String,
+    },
+    link: {
       type: String,
     },
     sourceOfInfoName: {
@@ -58,17 +65,17 @@ const Schema = new mongoose.Schema(
         "Academics",
         "Admissions",
         "Tenders",
-        "Jobsfaculty",
-        "Jobsnonfaculty",
-        "Jobsfacultycontract",
-        "Jobsnonfacultycontract",
-        "researchjobs",
+        // "jobsFaculty",
+        // "jobsNonFaculty",
+        // "jobsFacultyContract",
+        // "jobsNonFacultyContract",
+        // "researchjobs",
         "Achievements",
         "others",
       ],
     },
     show: { type: Boolean, default: true },
-    showviewall:{type:Boolean,default:true},
+    showviewall: { type: Boolean, default: true },
     updateLogs: {
       type: Array,
       default: [],

@@ -7,12 +7,12 @@ fetch(`${data_url}` + "/admissions/updates/get?visible=visible&degree=BTECH")
       const ugupdate = document.createElement("li");
       ugupdate.innerHTML = `
     <div class="flex">
-    <div class="w-[80%]">
-      <a
-       href='${update.link}'
-        class="hover:text-orange-600 inline"
-      >
-        <span class="bg-[#0369A1] mr-1">|</span>
+      <span class="bg-[#0369A1]">|</span>
+      <div class="w-[80%] mx-2">
+        <a
+        href='${update.link}'
+          class="hover:text-orange-600 inline"
+        >
         ${update.title}
         </a>
         </div>
@@ -48,12 +48,13 @@ fetch(
       const mtechupdate = document.createElement("li");
       mtechupdate.innerHTML = `
       <div class="flex">
-      <div class="w-[80%]">
-        <a
-         href='${update.link}'
-          class="hover:text-orange-600 inline"
-        >
-          <span class="bg-[#0369A1] mr-1">|</span>
+        <span class="bg-[#0369A1]">|</span>
+        <div class="w-[80%] mx-2">
+          <a
+          href='${update.link}'
+            class="hover:text-orange-600 inline"
+          >
+          
         ${update.title}
         </a>
         </div>
@@ -91,12 +92,13 @@ fetch(
       const mtechselfupdate = document.createElement("li");
       mtechselfupdate.innerHTML = `
         <div class="flex">
-        <div class="w-[80%]">
-          <a
-           href='${update.link}'
-            class="hover:text-orange-600 inline"
-          >
-            <span class="bg-[#0369A1] mr-1">|</span>
+          <span class="bg-[#0369A1]">|</span>
+          <div class="w-[80%] mx-2">
+            <a
+            href='${update.link}'
+              class="hover:text-orange-600 inline"
+            >
+            
           ${update.title}
           </a>
           </div>
@@ -132,12 +134,13 @@ fetch(`${data_url}` + "/admissions/updates/get?visible=visible&degree=MSC")
       const mscupdate = document.createElement("li");
       mscupdate.innerHTML = `
           <div class="flex">
-          <div class="w-[80%]">
+          <span class="bg-[#0369A1]">|</span>
+          <div class="w-[80%] mx-2">
             <a
              href='${update.link}'
               class="hover:text-orange-600 inline"
             >
-              <span class="bg-[#0369A1] mr-1">|</span>
+              
             ${update.title}
             </a>
             </div>
@@ -173,12 +176,12 @@ fetch(`${data_url}` + "/admissions/updates/get?visible=visible&degree=MBA")
       const mbaupdate = document.createElement("li");
       mbaupdate.innerHTML = `
             <div class="flex">
-            <div class="w-[80%]">
+            <span class="bg-[#0369A1]">|</span>
+            <div class="w-[80%] mx-2">
               <a
                href='${update.link}'
                 class="hover:text-orange-600 inline"
-              >
-                <span class="bg-[#0369A1] mr-1">|</span>
+              > 
               ${update.title}
               </a>
               </div>
@@ -214,12 +217,12 @@ fetch(`${data_url}` + "/admissions/updates/get?visible=visible&degree=PHD")
       const phdupdate = document.createElement("li");
       phdupdate.innerHTML = `
               <div class="flex">
-              <div class="w-[80%]">
+              <span class="bg-[#0369A1]">|</span>
+              <div class="w-[80%] mx-2">
                 <a
                  href='${update.link}'
                   class="hover:text-orange-600 inline"
                 >
-                  <span class="bg-[#0369A1] mr-1">|</span>
                 ${update.title}
                 </a>
                 </div>
@@ -390,21 +393,40 @@ fetch(`${data_url}` + "/admissions/helplines/get?visible=visible&degree=BTECH")
   .then((response) => response.json())
   .then((data) => {
     const helplines = document.getElementById("helplines");
-
     data.forEach((update) => {
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                          <li class="px-1 mt-1">
-                          <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                            >|</span
-                          ><span style="font-size: 14px"
-                            ><span style="color: #000000"
-                              ><span style="font-size: 14px" class="px-1"
-                                >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                queries in ${update.languages})</span
-                              ></span
-                            ></span
-                          >
+                          <li class="ppx-1 mt-1 mb-4">
+            <div class="lg:basis-3/4">
+                   
+            <p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+            ${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+            <div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+            <div class="w-[100%] flex flex-col gap-[4px]">
+            ${update.email  ? ` <div class="flex flex-row">
+                <p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+               <p class="">: &nbsp; &nbsp;</p>
+                <p>${update.email}</p>
+           </div>` : ``}
+           <div class="flex flex-row">
+               <p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+               <p class="">: &nbsp; &nbsp;</p>
+               <p>${update.contactNumbers}</p>
+           </div>
+           ${update.languages.length ?    `<div class="flex flex-row">
+          <p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+               <p class="">: &nbsp; &nbsp;</p>
+                <p>${update.languages}</p>
+           </div>` : ``}
+           ${update.timings.length ?    `<div class="flex flex-row">
+           <p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+                <p class="">: &nbsp; &nbsp;</p>
+                 <p>${update.timings}</p>
+            </div>` : ``}
+          </div>
+   </div>
+
+
                         </li>
                         
                             `;
@@ -417,28 +439,52 @@ fetch(
 )
   .then((response) => response.json())
   .then((data) => {
-    const helplines = document.getElementById("helplinesmtech");
-
+    const helplines = document.getElementById("helplinesmtechccmt");
+ console.log(helplines)
     data.forEach((update) => {
+      console.log(update);
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                            <li class="px-1 mt-1">
-                            <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                              >|</span
-                            ><span style="font-size: 14px"
-                              ><span style="color: #000000"
-                                ><span style="font-size: 14px" class="px-1"
-                                  >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                  queries in ${update.languages})</span
-                                ></span
-                              ></span
-                            >
-                          </li>
-                          
-                              `;
+      <li class="ppx-1 mt-1 mb-4">
+<div class="lg:basis-3/4">
+
+<p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+<div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+<div class="w-[100%] flex flex-col gap-[4px]">
+${update.email  ? ` <div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.email}</p>
+</div>` : ``}
+<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.contactNumbers}</p>
+</div>
+${update.languages.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.languages}</p>
+</div>` : ``}
+${update.timings.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.timings}</p>
+</div>` : ``}
+</div>
+</div>
+
+
+    </li>
+    
+        `;
       helplines.appendChild(helpline);
+     
     });
   });
+
+
 
 fetch(
   `${data_url}` + "/admissions/helplines/get?visible=visible&degree=MTECH-SELF"
@@ -446,53 +492,45 @@ fetch(
   .then((response) => response.json())
   .then((data) => {
     const helplines = document.getElementById("helplinesmtechss");
-
     data.forEach((update) => {
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                              <li class="px-1 mt-1">
-                              <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                                >|</span
-                              ><span style="font-size: 14px"
-                                ><span style="color: #000000"
-                                  ><span style="font-size: 14px" class="px-1"
-                                    >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                    queries in ${update.languages})</span
-                                  ></span
-                                ></span
-                              >
-                            </li>
-                            
-                                `;
-      helplines.appendChild(helpline);
-    });
-  });
+      <li class="ppx-1 mt-1 mb-4">
+<div class="lg:basis-3/4">
 
-fetch(
-  `${data_url}` + "/admissions/helplines/get?visible=visible&degree=MTECH-SELF"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    const helplines = document.getElementById("helplinesmtechss");
+<p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+<div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+<div class="w-[100%] flex flex-col gap-[4px]">
+${update.email  ? ` <div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.email}</p>
+</div>` : ``}
+<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.contactNumbers}</p>
+</div>
+${update.languages.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.languages}</p>
+</div>` : ``}
+${update.timings.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.timings}</p>
+</div>` : ``}
+</div>
+</div>
 
-    data.forEach((update) => {
-      const helpline = document.createElement("li");
-      helpline.innerHTML = `
-                                <li class="px-1 mt-1">
-                                <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                                  >|</span
-                                ><span style="font-size: 14px"
-                                  ><span style="color: #000000"
-                                    ><span style="font-size: 14px" class="px-1"
-                                      >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                      queries in ${update.languages})</span
-                                    ></span
-                                  ></span
-                                >
-                              </li>
-                              
-                                  `;
+
+    </li>
+    
+        `;
       helplines.appendChild(helpline);
+ 
     });
   });
 
@@ -504,20 +542,40 @@ fetch(`${data_url}` + "/admissions/helplines/get?visible=visible&degree=MSC")
     data.forEach((update) => {
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                                  <li class="px-1 mt-1">
-                                  <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                                    >|</span
-                                  ><span style="font-size: 14px"
-                                    ><span style="color: #000000"
-                                      ><span style="font-size: 14px" class="px-1"
-                                        >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                        queries in ${update.languages})</span
-                                      ></span
-                                    ></span
-                                  >
-                                </li>
-                                
-                                    `;
+                          <li class="ppx-1 mt-1 mb-4">
+            <div class="lg:basis-3/4">
+                   
+            <p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+            ${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+            <div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+            <div class="w-[100%] flex flex-col gap-[4px]">
+            ${update.email  ? ` <div class="flex flex-row">
+                <p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+               <p class="">: &nbsp; &nbsp;</p>
+                <p>${update.email}</p>
+           </div>` : ``}
+           <div class="flex flex-row">
+               <p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+               <p class="">: &nbsp; &nbsp;</p>
+               <p>${update.contactNumbers}</p>
+           </div>
+           ${update.languages.length ?    `<div class="flex flex-row">
+          <p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+               <p class="">: &nbsp; &nbsp;</p>
+                <p>${update.languages}</p>
+           </div>` : ``}
+           ${update.timings.length ?    `<div class="flex flex-row">
+           <p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+                <p class="">: &nbsp; &nbsp;</p>
+                 <p>${update.timings}</p>
+            </div>` : ``}
+          </div>
+   </div>
+
+
+                        </li>
+                        
+                            `;
       helplines.appendChild(helpline);
     });
   });
@@ -530,20 +588,40 @@ fetch(`${data_url}` + "/admissions/helplines/get?visible=visible&degree=MBA")
     data.forEach((update) => {
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                                    <li class="px-1 mt-1">
-                                    <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                                      >|</span
-                                    ><span style="font-size: 14px"
-                                      ><span style="color: #000000"
-                                        ><span style="font-size: 14px" class="px-1"
-                                          >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                          queries in ${update.languages})</span
-                                        ></span
-                                      ></span
-                                    >
-                                  </li>
-                                  
-                                      `;
+      <li class="ppx-1 mt-1 mb-4">
+<div class="lg:basis-3/4">
+
+<p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+<div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+<div class="w-[100%] flex flex-col gap-[4px]">
+${update.email  ? ` <div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.email}</p>
+</div>` : ``}
+<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.contactNumbers}</p>
+</div>
+${update.languages.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.languages}</p>
+</div>` : ``}
+${update.timings.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.timings}</p>
+</div>` : ``}
+</div>
+</div>
+
+
+    </li>
+    
+        `;
       helplines.appendChild(helpline);
     });
   });
@@ -556,20 +634,40 @@ fetch(`${data_url}` + "/admissions/helplines/get?visible=visible&degree=PHD")
     data.forEach((update) => {
       const helpline = document.createElement("li");
       helpline.innerHTML = `
-                                      <li class="px-1 mt-1">
-                                      <span class="bg-[#0369A1] text-[#0369A1] mr-1"
-                                        >|</span
-                                      ><span style="font-size: 14px"
-                                        ><span style="color: #000000"
-                                          ><span style="font-size: 14px" class="px-1"
-                                            >${update.number} (${update.name}, ${update.startTime} to ${update.endTime}, For
-                                            queries in ${update.languages})</span
-                                          ></span
-                                        ></span
-                                      >
-                                    </li>
-                                    
-                                        `;
+      <li class="ppx-1 mt-1 mb-4">
+<div class="lg:basis-3/4">
+
+<p class="font2 font-semibold text-[26px] lg:text-[1.4rem] leading-[1.3] normal-case">${update.name}</p>
+${update.designation ?   ` <p class="text-gray-400 text-[12px] lg:text-[16px]">${update.designation}</p>` : ``}
+<div class="bg-accent w-[100%] h-[3px] mb-4 mt-2"></div>
+<div class="w-[100%] flex flex-col gap-[4px]">
+${update.email  ? ` <div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 text-justify font-semibold">Email</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.email}</p>
+</div>` : ``}
+<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Phone</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.contactNumbers}</p>
+</div>
+${update.languages.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Languages</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.languages}</p>
+</div>` : ``}
+${update.timings.length ?    `<div class="flex flex-row">
+<p class="basis-3/12 md:basis-1/12 font-semibold">Timings</p>
+<p class="">: &nbsp; &nbsp;</p>
+<p>${update.timings}</p>
+</div>` : ``}
+</div>
+</div>
+
+
+    </li>
+    
+        `;
       helplines.appendChild(helpline);
     });
   });

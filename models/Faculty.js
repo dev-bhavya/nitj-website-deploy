@@ -41,7 +41,7 @@ const Schema = new mongoose.Schema({
         default: []
     },
     address: {
-        type: [
+        type: 
             {
                 "address1": {
                     type: String
@@ -68,8 +68,8 @@ const Schema = new mongoose.Schema({
                     type: String
                 },
             }
-        ],
-        default: []
+        ,
+        default: {}
     },
     gender: {
         type: String,
@@ -266,7 +266,7 @@ const Schema = new mongoose.Schema({
     },
 
     research_profile: {
-        type: [
+        type: 
             {
                 "Research Interests": {
                     type: String
@@ -275,8 +275,8 @@ const Schema = new mongoose.Schema({
                     type: String
                 }
             }
-        ],
-        default: []
+        ,
+        default: {}
     },
     research_project: {
         type: [
@@ -313,8 +313,14 @@ const Schema = new mongoose.Schema({
         default: []
     },
     personal_link: {
-        type:
-            String
+        type:{
+            "Google Scholar Link":{
+                type:String
+            },
+            "Personal Link":{
+                type:String
+            }
+        }
     },
     journal: {
         type: [
@@ -339,6 +345,9 @@ const Schema = new mongoose.Schema({
         type: [
             {
                 "Category": {
+                    type: String
+                },
+                "Title" :{
                     type: String
                 },
                 "Type": {

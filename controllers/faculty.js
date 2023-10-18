@@ -1,10 +1,10 @@
 const Faculty = require('../models/Faculty')
 const Sessions = require('../models/Session');
+const DeptWiseFaculty = require('../models/deptwiseFaculty');
 
 const getAllFaculty = async (req, res) => {
     try {
-        const result = await Faculty.find({ show: true },).sort({order:1}).select("-password");
-        console.log(result);
+        const result = await DeptWiseFaculty.find({ show: true },).sort({order:1}).select("-password");
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
@@ -14,7 +14,7 @@ const getAllFaculty = async (req, res) => {
 const getByIdFaculty = async (req, res) => {
     try {
         const result = await Faculty.find({ _id: req.params.id }).select("-password");
-        res.status(200).json({ data: result, validation: {status:req.user} });
+        res.status(200).json({ data: result, validation: req.user });
     } catch (error) {
         res.status(400).json("Error: " + error);
     }
@@ -22,7 +22,7 @@ const getByIdFaculty = async (req, res) => {
 
 const getByDeptFaculty = async (req, res) => {
     try {
-        const result = await Faculty.find({ show: true, department: req.params.dept }).sort({order:1}).select("-password");
+        const result = await DeptWiseFaculty.find({ department: req.params.dept, show: true }).populate('faculty.ID', 'name address img position education_qualification address gender email dob father_name designation nationality book_publications conference_publications admin_responsibility patent phd_dissertion phd_supervised awards affiliations research_profile research_project personal_link journal event sourceOfInfo order');
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
@@ -53,10 +53,9 @@ const deleteFaculty = async (req, res) => {
 
 const updateFaculty = async (req, res) => {
     try {
-
-        if(req.user){
+        if(req.user.login && req.user.isFaculty){
             const result = await Faculty.findById(req.params.id);
-            await result.update({[req.query.q]:req.body});
+            await result.update({$set:{[req.query.q]:req.body}});
             return res.status(200).json("Faculty updated succesfully")
         }
         return res.status(401).json("Faculty not Updated");
