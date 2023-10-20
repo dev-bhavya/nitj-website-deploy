@@ -16,6 +16,9 @@ const Schema=new mongoose.Schema({
     },
     position:{
         type:String
+    },
+    rollNumber: {
+        type: String,
     }
     ,
     sourceOfInfo: {
